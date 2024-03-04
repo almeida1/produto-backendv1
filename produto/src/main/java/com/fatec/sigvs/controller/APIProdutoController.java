@@ -24,7 +24,7 @@ import com.fatec.sigvs.model.Imagem;
 import com.fatec.sigvs.model.Produto;
 import com.fatec.sigvs.service.IProdutoServico;
 import com.fatec.sigvs.service.ImagemServico;
-
+@CrossOrigin("*") // desabilita o cors do spring security
 @RestController
 @RequestMapping("/api/v1/produtos")
 public class APIProdutoController {
@@ -37,7 +37,6 @@ public class APIProdutoController {
 	// A anotação @RequestBody indica que o Spring deve desserializar o body da
 	// solicitação em um objeto. Este objeto é passado como um parâmetro do método
 
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Object> cadastraProduto(@RequestBody Produto p) {
 		logger.info(">>>>>> apicontroller cadastrar produto iniciado...");
@@ -57,7 +56,6 @@ public class APIProdutoController {
 	 * @param id - codigo do produto enviado pela aplicacao cliente
 	 * @return - 200 OK ou 404 NOT_FOUND
 	 */
-	@CrossOrigin // desabilita o cors do spring security
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> consultaPorId(@PathVariable String id) {
 		logger.info(">>>>>> apicontroller consulta por id chamado");
@@ -69,9 +67,6 @@ public class APIProdutoController {
 		return ResponseEntity.status(HttpStatus.OK).body(produto.get());
 	}
 
-	
-
-	@CrossOrigin // desabilita o cors do spring security
 	@PostMapping("/imadb")
 	public ResponseEntity<String> upload(@RequestParam (value = "file") MultipartFile file, @RequestParam String id) {
 		logger.info(">>>>>> apicontroller upload iniciada...");
@@ -99,7 +94,6 @@ public class APIProdutoController {
 		}
 	}
 
-	@CrossOrigin
 	@GetMapping("/imadb/{nomeArquivo}")
 	public ResponseEntity<Object> download(@PathVariable String nomeArquivo) {
 		logger.info(">>>>>> api download iniciado..." + nomeArquivo);
@@ -113,7 +107,7 @@ public class APIProdutoController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados invalidos");
 		}
 	}
-	@CrossOrigin
+
 	@GetMapping("/imadb/{id}/id")
 	public ResponseEntity<Object> downloadById(@PathVariable Long id) {
 		logger.info(">>>>>> api download iniciado..." + id);
@@ -127,12 +121,12 @@ public class APIProdutoController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados invalidos");
 		}
 	}
-	@CrossOrigin
+	
 	@GetMapping
 	public ResponseEntity<Object> consultaCatalogo() {
 		return ResponseEntity.status(HttpStatus.OK).body(produtoServico.consultaCatalogo());
 	}
-	@CrossOrigin
+
 	@GetMapping("/imadb/")
 	public ResponseEntity<Object> obtemImagens() {
 		
