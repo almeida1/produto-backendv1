@@ -59,7 +59,15 @@ public class ProdutoServico implements IProdutoServico {
 	}
 
 	@Override
-	public Optional<Produto> atualizar(Long id, Produto produto) {
+	public Optional<Produto> atualizar(Long produtoId, Produto produtoAtualizado) {
+		logger.info(">>>>>> servico atualizar informacoes de produto chamado");
+		Produto produto = produtoRepository.findById(produtoId)
+				.orElseThrow(() -> new IllegalArgumentException("Produto nao cadastrado"));
+		produto.setDescricao(produtoAtualizado.getDescricao());
+		produto.setCategoria(produtoAtualizado.getCategoria());
+		produto.setQuantidadeNoEstoque(produtoAtualizado.getQuantidadeNoEstoque());
+		produto.setCusto(produtoAtualizado.getCusto());
+		Produto produtoAtualizadoObj = produtoRepository.save(produto);
 		return Optional.ofNullable(produtoRepository.save(produto));
 	}
 
