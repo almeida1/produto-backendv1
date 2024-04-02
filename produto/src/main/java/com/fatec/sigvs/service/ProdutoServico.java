@@ -72,8 +72,9 @@ public class ProdutoServico implements IProdutoServico {
 	}
 
 	@Override
-	public void excluir(Long id) {
-		produtoRepository.deleteById(id);
+	public void excluir(String id) {
+		long codProduto = Long.parseLong(id);
+		produtoRepository.deleteById(codProduto);
 	}
 
 	/**
@@ -101,4 +102,9 @@ public class ProdutoServico implements IProdutoServico {
 		logger.info(">>>>>> servico consulta catalogo catalogo =>" + lista.size());
 		return lista;
 	}
+	public List<Produto> consultaProduto() {
+		List<Produto> listaDeProdutos = produtoRepository.findAll();
+		return listaDeProdutos;
+	}
+	
 }

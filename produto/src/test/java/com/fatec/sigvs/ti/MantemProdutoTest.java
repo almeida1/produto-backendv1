@@ -59,6 +59,7 @@ public class MantemProdutoTest {
 
 		imagemRepository.save(imagem);
 		id = produto1.getId();
+		
 
 	}
 
@@ -156,7 +157,7 @@ public class MantemProdutoTest {
 	@Test
 	public void ct11_quando_id_valido_exclui_com_sucesso() {
 
-		Long idExistente = id;
+		String idExistente = id.toString();
 		assertDoesNotThrow(() -> produtoServico.excluir(idExistente));
 		String i = id.toString();
 		Optional<Produto> resultado = produtoServico.consultarPorId(i);
@@ -165,7 +166,7 @@ public class MantemProdutoTest {
 
 	@Test
 	public void ct12_quando_id_invalido_retorna_erro() {
-		Long idInexistente = 999L;
+		String idInexistente = "999L";
 		assertDoesNotThrow(() -> produtoServico.excluir(idInexistente));
 	}
 }

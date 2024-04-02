@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -133,17 +134,38 @@ public class APIProdutoController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados invalidos");
 		}
 	}
-	
+	/**
+	 * consulta todos considerando id.produto = id.imagem
+	 * @return
+	 */
 	@GetMapping
+	public ResponseEntity<Object> consultaProduto() {
+		return ResponseEntity.status(HttpStatus.OK).body(produtoServico.consultaProduto());
+	}
+	/**
+	 * consulta todos considerando id.produto = id.imagem
+	 * @return
+	 */
+	@GetMapping("/catalogo")
 	public ResponseEntity<Object> consultaCatalogo() {
 		return ResponseEntity.status(HttpStatus.OK).body(produtoServico.consultaCatalogo());
 	}
-
 	@GetMapping("/imadb/")
 	public ResponseEntity<Object> obtemImagens() {
-		
 		return ResponseEntity.status(HttpStatus.OK).body(imagemServico.getAll());
 	}
-	
+	@DeleteMapping ("/{id}")
+	public ResponseEntity<Object> excluiProduto(@PathVariable String id){
+		logger.info(">>>>>> apicontroller exluir por id chamado");
+		Optional<Produto> produto = produtoServico.consultarPorId(id);
+		if (produto.isEmpty()) {
+			logger.info(">>>>>> apicontroller id not found");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id não encontrado.");
+		}else {
+			produtoServico.excluir(id);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}
+
+	}
 	
 }
