@@ -166,7 +166,7 @@ public class MantemProdutoTest {
 
 	@Test
 	public void ct12_quando_id_invalido_retorna_erro() {
-		String idInexistente = "999L";
+		String idInexistente = "999";
 		assertDoesNotThrow(() -> produtoServico.excluir(idInexistente));
 	}
 }

@@ -89,16 +89,23 @@ public class ProdutoServico implements IProdutoServico {
 		logger.info(">>>>>> servico consulta catalogo qtde de produto =>" + produtoRepository.count());
 		List<Imagem> listaI = imagemServico.getAll();
 		logger.info(">>>>>> servico consulta catalogo qtde de imagens =>" + imagemServico.getAll().size());
+		
 		for (Produto p : listaP) {
-			for (Imagem i : listaI) {
-				logger.info(">>>>>> servico consulta catalogo id =>" + p.getId() + "-" + i.getId());
-				if (p.getId().equals(i.getId())) {
-					c = new Catalogo(p.getId(), p.getDescricao(), p.getCategoria(), p.getCusto(),
-							p.getQuantidadeNoEstoque(), i.getArquivo());
-					lista.add(c);
-				}
-			}
-		}
+            boolean achou = false;
+            for (Imagem i : listaI) {
+                logger.info(">>>>>> servico consulta catalogo id =>" + p.getId() + "-" + i.getId());
+                if (p.getId().equals(i.getId())) {
+                    lista.add(new Catalogo(p.getId(), p.getDescricao(), p.getCategoria(), p.getCusto(),
+                            p.getQuantidadeNoEstoque(), i.getArquivo()));
+                    achou = true;
+                    break; // Parar de procurar imagens para este produto após encontrar uma correspondência
+                }
+            }
+            if (!achou) { // Se não houver correspondência de imagem para o produto
+                lista.add(new Catalogo(p.getId(), p.getDescricao(), p.getCategoria(), p.getCusto(),
+                        p.getQuantidadeNoEstoque(), null));
+            }
+        }
 		logger.info(">>>>>> servico consulta catalogo catalogo =>" + lista.size());
 		return lista;
 	}
