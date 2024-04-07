@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.sigvs.model.Catalogo;
+
 import com.fatec.sigvs.model.IProdutoRepository;
 import com.fatec.sigvs.model.Imagem;
+
 import com.fatec.sigvs.model.Produto;
 
 @Service
@@ -21,6 +23,7 @@ public class ProdutoServico implements IProdutoServico {
 	IProdutoRepository produtoRepository;
 	@Autowired
 	IImagemServico imagemServico;
+	
 
 	@Override
 	public List<Catalogo> consultaPorDescricao(String descricao) {
@@ -113,5 +116,7 @@ public class ProdutoServico implements IProdutoServico {
 		List<Produto> listaDeProdutos = produtoRepository.findAll();
 		return listaDeProdutos;
 	}
+
+	
 	
 }
