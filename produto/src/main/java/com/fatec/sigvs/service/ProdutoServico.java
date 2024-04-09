@@ -70,7 +70,7 @@ public class ProdutoServico implements IProdutoServico {
 		produto.setCategoria(produtoAtualizado.getCategoria());
 		produto.setQuantidadeNoEstoque(produtoAtualizado.getQuantidadeNoEstoque());
 		produto.setCusto(produtoAtualizado.getCusto());
-		Produto produtoAtualizadoObj = produtoRepository.save(produto);
+		
 		return Optional.ofNullable(produtoRepository.save(produto));
 	}
 

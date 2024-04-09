@@ -59,15 +59,26 @@ public class ClienteServico implements IClienteServico{
 
 	@Override
 	public Optional<Cliente> consultarPorId(String id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		logger.info(">>>>>> servico cliente consulta por id chamado");
+		long codCliente = Long.parseLong(id);
+		return repository.findById(codCliente);
 	}
 
+
 	@Override
-	public Optional<Cliente> atualizar(Long id, Cliente cliente) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+	public Optional<Cliente> atualizar(Long id, Cliente clienteAtualizado) {
+		logger.info(">>>>>> servico atualizar informacoes de cliente chamado para id =>" + id);
+		Cliente cliente = repository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Cliente nao cadastrado"));
+		cliente.setCpf(clienteAtualizado.getCpf());
+		cliente.setNome(clienteAtualizado.getNome());
+		cliente.setEmail(clienteAtualizado.getEmail());
+		String endereco = obtemEndereco(clienteAtualizado.getCep());
+		cliente.setCep(clienteAtualizado.getCep());
+		cliente.setEndereco(endereco);
+		return Optional.ofNullable(repository.save(cliente));
 	}
+
 
 	@Override
 	public void excluir(String id) {
