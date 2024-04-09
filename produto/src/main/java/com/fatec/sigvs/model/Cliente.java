@@ -1,5 +1,9 @@
 package com.fatec.sigvs.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
@@ -76,16 +80,40 @@ public class Cliente {
 		this.dataCadastro = dataAtual.toString(fmt);
 		setDataRevisao();
 	}
-	public String getDataCadastro() {
+	public String dataCadastro() {
 		return this.dataCadastro;
+	}
+	
+	public String getDataCadastro() {
+		// Formatar a data de "yyyy/MM/dd" para "dd/MM/yyyy"
+        SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date data = formatoEntrada.parse(this.dataCadastro);
+            return formatoSaida.format(data);
+        } catch (ParseException e) {
+            // Tratar erro de formatação
+            e.printStackTrace();
+            return null;
+        }
 	}
 	public void setDataRevisao() {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY/MM/dd");
-		DateTime data = fmt.parseDateTime(getDataCadastro());
+		DateTime data = fmt.parseDateTime(dataCadastro());
 		this.dataRevisao = data.plusDays(360).toString(fmt);
 	}
 	public String getDataRevisao() {
-		return this.dataRevisao;
+		 // Formatar a data de "yyyy/MM/dd" para "dd/MM/yyyy"
+        SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date data = formatoEntrada.parse(this.dataRevisao);
+            return formatoSaida.format(data);
+        } catch (ParseException e) {
+            // Tratar erro de formatação
+            e.printStackTrace();
+            return null;
+        }
 	}
 	public Integer verificaRevisao() {
 		DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY/MM/dd");

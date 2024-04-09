@@ -46,10 +46,10 @@ public class ClienteServico implements IClienteServico{
 		} catch (Exception e) { // captura validacoes na camada de persistencia
 			
 			if (e.getMessage().contains("could not execute statement")) {
-				logger.info(">>>>>> 2. cliente ja cadastrado ==> " + e.getMessage());
+				logger.info(">>>>>> cliente ja cadastrado ==> " + e.getMessage());
 				
 			} else {
-				logger.error(">>>>>> 2. erro nao esperado ==> " + e.getMessage());
+				logger.error(">>>>>> erro nao esperado ==> " + e.getMessage());
 				
 			}
 			return Optional.ofNullable(umCliente);
@@ -82,7 +82,8 @@ public class ClienteServico implements IClienteServico{
 
 	@Override
 	public void excluir(String id) {
-		// TODO Auto-generated method stub
+		long idCliente = Long.parseLong(id);
+		repository.deleteById(idCliente);
 		
 	}
 	public String obtemEndereco(String cep) {
