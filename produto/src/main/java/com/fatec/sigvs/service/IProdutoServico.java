@@ -14,5 +14,6 @@ public interface IProdutoServico {
 	public Optional <Produto> consultarPorId(String id);
 	public Optional <Produto> atualizar(Long id, Produto produto);
 	public void excluir(String id);
+	public Double estoqueImobilizado();
 	
 }

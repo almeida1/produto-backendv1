@@ -177,6 +177,10 @@ public class APIProdutoController {
 
 	}
 
-
-
+	@GetMapping("/imobilizado")
+	public ResponseEntity<Object> calculaImobilizado() {
+		logger.info(">>>>>> apicontroller consulta imobilizado");
+		return ResponseEntity.status(HttpStatus.OK).body(produtoServico.estoqueImobilizado());
+		
+	}
 }

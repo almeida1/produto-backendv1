@@ -117,6 +117,13 @@ public class ProdutoServico implements IProdutoServico {
 		return listaDeProdutos;
 	}
 
-	
+	public List<Produto> consultaImobilizado() {
+		List<Produto> listaDeProdutos = produtoRepository.findAll();
+		return listaDeProdutos;
+	}
+	public Double estoqueImobilizado() {
+		 logger.info(">>>>>> servico imobilizado =>" + produtoRepository.calcularTotalCustoQuantidade() );
+		return produtoRepository.calcularTotalCustoQuantidade();
+	}
 	
 }
