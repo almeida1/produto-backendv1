@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.sigvs.model.Catalogo;
-
-import com.fatec.sigvs.model.IProdutoRepository;
 import com.fatec.sigvs.model.Imagem;
 
 import com.fatec.sigvs.model.Produto;

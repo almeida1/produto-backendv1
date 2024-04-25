@@ -12,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fatec.sigvs.model.Cliente;
 import com.fatec.sigvs.model.Endereco;
-import com.fatec.sigvs.model.IClienteRepository;
 
 @Service
 public class ClienteServico implements IClienteServico{

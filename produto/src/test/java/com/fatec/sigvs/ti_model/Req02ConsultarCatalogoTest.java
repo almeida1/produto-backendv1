@@ -1,4 +1,4 @@
-package com.fatec.sigvs.ti;
+package com.fatec.sigvs.ti_model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,14 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fatec.sigvs.model.Catalogo;
-import com.fatec.sigvs.model.IImagemRepository;
-import com.fatec.sigvs.model.IProdutoRepository;
 import com.fatec.sigvs.model.Imagem;
 import com.fatec.sigvs.model.Produto;
+import com.fatec.sigvs.service.IImagemRepository;
+import com.fatec.sigvs.service.IProdutoRepository;
 import com.fatec.sigvs.service.ProdutoServico;
 
 @SpringBootTest
-class Req02ConsultarCatalogo {
+class Req02ConsultarCatalogoTest {
 	@Autowired
 	ProdutoServico servico;
 	@Autowired

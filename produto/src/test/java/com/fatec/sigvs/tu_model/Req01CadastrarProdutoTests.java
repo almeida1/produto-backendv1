@@ -1,4 +1,4 @@
-package com.fatec.sigvs.tu;
+package com.fatec.sigvs.tu_model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;

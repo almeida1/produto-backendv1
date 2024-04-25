@@ -1,10 +1,12 @@
-package com.fatec.sigvs.model;
+package com.fatec.sigvs.service;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import com.fatec.sigvs.model.Produto;
 
 @Repository
 public interface IProdutoRepository extends JpaRepository<Produto, Long> {
