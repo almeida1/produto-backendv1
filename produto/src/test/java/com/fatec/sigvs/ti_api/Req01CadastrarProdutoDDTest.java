@@ -24,7 +24,7 @@ class Req01CadastrarProdutoDDTest {
 			"Eletrobomba 110V para Maquina de Lavar e Lava Louças, , 51.66, 12, 400 BAD_REQUEST, A categoria não deve estar em branco"
 	})
 
-	void leDados(String descricao, String categoria, String custo, String quant, String re1, String re2) {
+	void cadastrarProduto(String descricao, String categoria, String custo, String quant, String re1, String re2) {
 
 		final String baseUrl = "/api/v1/produtos";
 		HttpHeaders headers = new HttpHeaders();

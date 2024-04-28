@@ -20,7 +20,7 @@ class Req01CadastrarProdutoTest {
 	TestRestTemplate testRestTemplate;
 
 	@Test
-	void test() {
+	void ct01_cadatrar_produto() {
 		Produto produto = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar", 51.66,
 				12);
 		//HttpHeaders headers = new HttpHeaders();

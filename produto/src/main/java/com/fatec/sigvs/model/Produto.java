@@ -97,5 +97,11 @@ public class Produto {
 				&& Double.doubleToLongBits(custo) == Double.doubleToLongBits(other.custo)
 				&& Objects.equals(descricao, other.descricao) && quantidadeNoEstoque == other.quantidadeNoEstoque;
 	}
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", descricao=" + descricao + ", categoria=" + categoria + ", custo=" + custo
+				+ ", quantidadeNoEstoque=" + quantidadeNoEstoque + "]";
+	}
+	
 		
 }
