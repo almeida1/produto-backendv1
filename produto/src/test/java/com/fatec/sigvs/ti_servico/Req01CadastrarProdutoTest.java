@@ -21,7 +21,7 @@ class Req01CadastrarProdutoTest {
     void ct01CadastrarProdutoComSucesso() {
         // dado que nao existem produtos cadastrados
         repository.deleteAll();
-        Produto produto1 = new Produto("eletrobomba 110v", "maquina de lavar", 22.30, 10);
+        Produto produto1 = new Produto("eletrobomba 110v", "maquina de lavar", "22.30", "10");
         // quando cadastro um produto
         servico.cadastrar(produto1);
         // entao retorna 1

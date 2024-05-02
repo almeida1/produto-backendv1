@@ -22,7 +22,7 @@ import com.fatec.sigvs.service.IProdutoRepository;
 import com.google.gson.Gson;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-class Req03ConsultarProdutoPorIdTest {
+class Req03ConsultarProdutoTest {
 	String urlBase = "/api/v1/produtos/";
 	@Autowired
 	TestRestTemplate testRestTemplate;
@@ -36,7 +36,7 @@ class Req03ConsultarProdutoPorIdTest {
 	public void setup() {
 		byte[] arquivo1 = null;
 		Produto produto1 = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar",
-				51.66, 12);
+				"51.66", "12");
 		repository.save(produto1);
 		Path path = Paths.get("c:/temp/produto1.jpg");
 		try {
@@ -63,7 +63,7 @@ class Req03ConsultarProdutoPorIdTest {
 		ResponseEntity<String> resposta = testRestTemplate.getForEntity(urlBase + id, String.class);
 		// Entao - retorna 200 ok e as informacoes detalhadas do produto);
 		Gson gson = new Gson();
-		Produto re = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar", 51.66, 12);
+		Produto re = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar", "51.66", "12");
 		Produto ro = gson.fromJson(resposta.getBody(), Produto.class);
 		assertEquals("200 OK", resposta.getStatusCode().toString());
 		System.out.println(ro.toString());
@@ -80,7 +80,14 @@ class Req03ConsultarProdutoPorIdTest {
 		assertEquals("404 NOT_FOUND", resposta.getStatusCode().toString());
 		assertEquals("Id não encontrado.", resposta.getBody());
 	}
-
+//	 @Test
+//    public void findAllCustomers() throws Exception {
+//        ResponseEntity<List<Customer>> responseEntity = restTemplate.exchange(
+//               "/Customer", HttpMethod.GET, null,
+//               new ParameterizedTypeReference<List<Customer>>(){});
+//        List<Customer> list = responseEntity.getBody();
+//        Assert.assertEquals(list.size(), 0);
+//    }
 
 
 }

@@ -36,20 +36,31 @@ public class APIProdutoController {
 	private IProdutoServico produtoServico;
 	@Autowired
 	ImagemServico imagemServico;
+	record ProdutoDTO(String descricao, String categoria, String custo, String quantidadeNoEstoque){};
 
 	// A anotação @RequestBody indica que o Spring deve desserializar o body da
 	// solicitação em um objeto. Este objeto é passado como um parâmetro do método
 
 	@PostMapping
-	public ResponseEntity<Object> cadastraProduto(@RequestBody Produto p) {
+	public ResponseEntity<Object> cadastraProduto(@RequestBody ProdutoDTO p) {
 		logger.info(">>>>>> apicontroller cadastrar produto iniciado...");
-		Optional<Produto> produto = produtoServico.cadastrar(p);
-//		if (produto.isPresent()) {
-//			return ResponseEntity.status(HttpStatus.CREATED).body(produto.get());
-//		} else {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro não esperado ");
-//		}
-		return ResponseEntity.status(HttpStatus.CREATED).body(produto.get());
+		try {
+			Produto produtoNovo = new Produto();
+			produtoNovo.setDescricao(p.descricao);
+			produtoNovo.setCategoria(p.categoria);
+			produtoNovo.setCusto(p.custo);
+			produtoNovo.setQuantidadeNoEstoque(p.quantidadeNoEstoque);
+			Optional<Produto> produto = produtoServico.cadastrar(produtoNovo);
+			if (produto.isPresent()) {
+				return ResponseEntity.status(HttpStatus.CREATED).body(produto.get());
+			} else {
+				logger.info(">>>>>> api produto controller cadastrar exception =>");
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro não esperado ");
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+		// return ResponseEntity.status(HttpStatus.CREATED).body(produto.get());
 	}
 
 	// atualiza informacoes de produto
@@ -181,6 +192,6 @@ public class APIProdutoController {
 	public ResponseEntity<Object> calculaImobilizado() {
 		logger.info(">>>>>> apicontroller consulta imobilizado");
 		return ResponseEntity.status(HttpStatus.OK).body(produtoServico.estoqueImobilizado());
-		
+
 	}
 }

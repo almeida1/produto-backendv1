@@ -31,7 +31,7 @@ class Req02ConsultarCatalogoTest {
 	
 	public void setup() {
 		byte[] arquivo1 = null;
-		Produto produto1 = new Produto("Eletrobomba para maquina de lavar", "maquina de lavar", 51.66, 12);
+		Produto produto1 = new Produto("Eletrobomba para maquina de lavar", "maquina de lavar", "51.66", "12");
 		produtoRepository.save(produto1);
 		Path path = Paths.get("c:/temp/produto1.jpg");
 		try {
@@ -51,13 +51,13 @@ class Req02ConsultarCatalogoTest {
 		System.out.println("quantidade de registros no repositorio imagem=>" + imagemRepository.count());
 	}
 	@Test
-	public void ct01_quando_existem_itens_no_catalogo_consulta_retornar_vazio_false() {
+	public void ct01_quando_existem_itens_no_catalogo_consulta_retorna_vazio_false() {
 		setup();
 		List<Catalogo> catalogo = produtoServico.consultaCatalogo();
 		assertFalse(catalogo.isEmpty());
 	}
 	@Test
-	public void ct02_quando_existem_itens_no_catalogo_consulta_retornar_vazio_false() {
+	public void ct02_quando_descricao_valida_consulta_retorna_vazio_false() {
 		setup();
 		List<Catalogo> catalogo = produtoServico.consultaPorDescricao("para");
 		assertFalse(catalogo.isEmpty());

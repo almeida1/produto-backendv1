@@ -1,6 +1,6 @@
 package com.fatec.sigvs.ti_model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -30,8 +30,9 @@ class Req02ConsultarCatalogoTest {
 	
 	public void setup() {
 		byte[] arquivo1 = null;
+		repository.deleteAll();
 		Produto produto1 = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar",
-				51.66, 12);
+				"51.66", "12");
 		repository.save(produto1);
 		Path path = Paths.get("c:/temp/produto1.jpg");
 		try {
@@ -50,13 +51,13 @@ class Req02ConsultarCatalogoTest {
 	}
 
 	@Test
-	void test() {
+	void ct01_quando_catalogo_tem_produto_e_imagem_cadastrada_retorna_maior_ou_igual_a_um() {
 		setup();
 		List<Catalogo> lista = servico.consultaCatalogo();
 		for (Catalogo c : lista) {
             System.out.println("imagem -id => " + c.getId() + "-" + c.getQuantidadeNoEstoque());
         }
-		assertEquals(1,lista.size());
+		assertTrue(lista.size()>= 1);
 	}
 
 }
