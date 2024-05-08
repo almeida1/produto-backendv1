@@ -20,10 +20,10 @@ public class Produto {
 	private double custo;
 	private int quantidadeNoEstoque;
 
-	public Produto(String descricao, String categoria, double custo, int quantidade) {
+	public Produto(String descricao, String categoria, String custo, String quantidadeNoEstoque) {
 		setDescricao(descricao);
 		setCategoria(categoria);
-		setQuantidadeNoEstoque(quantidade);
+		setQuantidadeNoEstoque(quantidadeNoEstoque);
 		setCusto(custo);
 	}
 	public Produto() {
@@ -39,7 +39,7 @@ public class Produto {
 	}
 	public void setDescricao(String descricao) {
 		if (descricao == null || descricao.isBlank())
-			throw new IllegalArgumentException("A descricao não deve estar em branco");
+			throw new IllegalArgumentException("A descrição não deve estar em branco");
 		else
 			this.descricao = descricao;
 	}
@@ -56,28 +56,33 @@ public class Produto {
 	public int getQuantidadeNoEstoque() {
 		return quantidadeNoEstoque;
 	}
-	public void setQuantidadeNoEstoque(int quantidade) {
+	public void setQuantidadeNoEstoque(String quantidadeNoEstoque) {
 		try {
-			if (quantidade <= 0)
-				throw new IllegalArgumentException("A quantidade deve ser maior que zero");
-			else
-				this.quantidadeNoEstoque = quantidade;
+			int q = Integer.parseInt(quantidadeNoEstoque);
+			if (q < 0) {
+				throw new IllegalArgumentException("A quantidade no estoque deve ser maior que zero");
+			} else {
+				this.quantidadeNoEstoque = q;
+			}
 		} catch (Exception e) {
-			throw new IllegalArgumentException("A quantidade deve ser maior que zero");
+			throw new IllegalArgumentException("A quantidade no estoque deve ser maior que zero");
 		}
+		
 	}
 	public double getCusto() {
 		return custo;
 	}
 
-	public void setCusto(double custo) {
+	public void setCusto(String custo) {
 		try {
-			if (custo <= 0)
-				throw new IllegalArgumentException("O custo deve ser numerico maior que zero");
-			else
-				this.custo = custo;
+			double c = Double.parseDouble(custo);
+			if (c <= 0) {
+				throw new IllegalArgumentException("O custo deve ser maior que zero");
+			} else {
+				this.custo = c;
+			}
 		} catch (Exception e) {
-			throw new IllegalArgumentException("O custo deve ser numerico maior que zero");
+			throw new IllegalArgumentException("O custo deve ser maior que zero");
 		}
 	}
 	@Override

@@ -66,8 +66,8 @@ public class ProdutoServico implements IProdutoServico {
 				.orElseThrow(() -> new IllegalArgumentException("Produto nao cadastrado"));
 		produto.setDescricao(produtoAtualizado.getDescricao());
 		produto.setCategoria(produtoAtualizado.getCategoria());
-		produto.setQuantidadeNoEstoque(produtoAtualizado.getQuantidadeNoEstoque());
-		produto.setCusto(produtoAtualizado.getCusto());
+		produto.setQuantidadeNoEstoque(String.valueOf(produtoAtualizado.getQuantidadeNoEstoque()));
+		produto.setCusto(String.valueOf(produtoAtualizado.getCusto()));
 		
 		return Optional.ofNullable(produtoRepository.save(produto));
 	}

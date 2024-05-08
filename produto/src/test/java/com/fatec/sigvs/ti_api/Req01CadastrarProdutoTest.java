@@ -21,20 +21,13 @@ class Req01CadastrarProdutoTest {
 
 	@Test
 	void ct01_cadatrar_produto() {
-		Produto produto = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar", 51.66,
-				12);
+		Produto produto = new Produto("Eletrobomba 110V para Maquina de Lavar e Lava Louças", "maquina de lavar", "51.66",
+				"12");
 		//HttpHeaders headers = new HttpHeaders();
 		//HttpEntity<Produto> request = new HttpEntity<>(produto, headers);
 		ResponseEntity<Produto> result = testRestTemplate.postForEntity(urlBase, produto, Produto.class);
 		assertEquals("201 CREATED", result.getStatusCode().toString());
 	}
-//	 @Test
-//	    public void findAllCustomers() throws Exception {
-//	        ResponseEntity<List<Customer>> responseEntity = restTemplate.exchange(
-//	               "/Customer", HttpMethod.GET, null,
-//	               new ParameterizedTypeReference<List<Customer>>(){});
-//	        List<Customer> list = responseEntity.getBody();
-//	        Assert.assertEquals(list.size(), 0);
-//	    }
+	
 
 }

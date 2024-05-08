@@ -41,7 +41,7 @@ public class MantemProdutoTest {
 	public void setup() {
 
 		byte[] arquivo1 = null;
-		Produto produto1 = new Produto("Eletrobomba para maquina de lavar", "maquina de lavar", 51.66, 12);
+		Produto produto1 = new Produto("Eletrobomba para maquina de lavar", "maquina de lavar", "51.66", "12");
 		produtoRepository.save(produto1);
 		Path path = Paths.get("c:/temp/produto1.jpg");
 		try {
@@ -108,7 +108,7 @@ public class MantemProdutoTest {
 	@Test
 	public void ct06_quando_produto_valido_cadastra_com_sucesso() {
 		// dado que as informacoes do produto sao validas
-		Produto produto2 = new Produto("Eletrobomba para maquina de lavar", "maquina de lavar", 51.66, 12);
+		Produto produto2 = new Produto("Eletrobomba para maquina de lavar", "maquina de lavar", "51.66", "12");
 		// quando cadastro o produto
 		Optional<Produto> resultado = produtoServico.cadastrar(produto2);
 		// retorna o produto e o id
@@ -120,10 +120,10 @@ public class MantemProdutoTest {
 	public void ct07_quando_produto_invalido_retorna_erro() {
 		Produto produto = null;
 		try {
-			produto = new Produto("", "maquina de lavar", 51.66, 12);
+			produto = new Produto("", "maquina de lavar", "51.66", "12");
 			fail("deveria falhar descricao em branco");
 		} catch (IllegalArgumentException e) {
-			assertEquals("A descricao não deve estar em branco", e.getMessage());
+			assertEquals("A descrição não deve estar em branco", e.getMessage());
 			assertNull(produto);
 		}
 	}
@@ -146,7 +146,7 @@ public class MantemProdutoTest {
 	@Test
 	public void ct10_quando_informacoes_do_produto_sao_validas_aturaliza_com_sucesso() {
 
-		Produto produtoAtualizado = new Produto("novo produto", "maquina de lavar", 51.66, 12);
+		Produto produtoAtualizado = new Produto("novo produto", "maquina de lavar", "51.66", "12");
 		produtoAtualizado.setId(id);
 		Optional<Produto> resultado = produtoServico.atualizar(id, produtoAtualizado);
 		assertTrue(resultado.isPresent());

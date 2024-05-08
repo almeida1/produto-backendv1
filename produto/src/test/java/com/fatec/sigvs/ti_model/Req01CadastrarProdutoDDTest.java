@@ -18,13 +18,13 @@ class Req01CadastrarProdutoDDTest {
 	@ParameterizedTest
 	@CsvSource({
 		"Eletrobomba 110V para Maquina de Lavar e Lava Louças, maquina de lavar, 51.66, 12, Sucesso",
-		"' ', maquina de lavar, 51.66, 12, A descricao não deve estar em branco",
-		", maquina de lavar, 51.66, 12, A descricao não deve estar em branco",
+		"' ', maquina de lavar, 51.66, 12, A descrição não deve estar em branco",
+		", maquina de lavar, 51.66, 12, A descrição não deve estar em branco",
 		"Eletrobomba 110V para Maquina de Lavar e Lava Louças, , 51.66, 12, A categoria não deve estar em branco"
 	})
 	
 
-	void cadastrarProduto(String descricao, String categoria, double custo, int quant, String re) {
+	void cadastrarProduto(String descricao, String categoria, String custo, String quant, String re) {
 		try {
 			Produto produto1 = new Produto(descricao, categoria,custo,quant);
 			Produto p = repository.save(produto1);

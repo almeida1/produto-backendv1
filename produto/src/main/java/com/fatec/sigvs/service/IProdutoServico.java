@@ -3,8 +3,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.fatec.sigvs.model.Catalogo;
-
 import com.fatec.sigvs.model.Produto;
+
 
 public interface IProdutoServico {
 	public List<Catalogo> consultaCatalogo();
