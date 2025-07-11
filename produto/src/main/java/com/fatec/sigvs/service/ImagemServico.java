@@ -25,7 +25,9 @@ public class ImagemServico implements IImagemServico {
 	private IImagemRepository imagemRepository;
 	@Autowired
 	private IProdutoRepository produtoRepository;
-
+    /*
+     * O arquivo de imagens esta sendo salvo no H2 é possivel salvar no disco do servidor.
+     */
 	public Optional<Imagem> salvar(MultipartFile arquivo, Long id) throws IOException {
 		// **********************************************************
 		// Obter informações sobre o arquivo - espera um tipo formdata chave/file

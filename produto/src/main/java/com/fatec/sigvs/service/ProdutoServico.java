@@ -79,6 +79,7 @@ public class ProdutoServico implements IProdutoServico {
 	}
 
 	/**
+	 * Obtem as imagens do banco de dados, 
 	 * associa o id do produto ao id da imagem e adiciona no catalogo de produtos
 	 * retorna - lista de produtos com a imagem
 	 */
